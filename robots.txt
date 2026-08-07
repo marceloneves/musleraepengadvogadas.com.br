@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# variantes de demonstração do tema, mantidas fora do índice
+Disallow: /inicio-imagem/
+Disallow: /inicio-video/
+Disallow: /inicio-slider/
+
+# arquivos gerados pelo tema, sem conteúdo próprio
+Disallow: /autor/
+Disallow: /categoria/
+Disallow: /wp-content/plugins/
+Disallow: /wp-includes/
+
+Sitemap: https://musleraepengadvogadas.com.br/sitemap.xml
