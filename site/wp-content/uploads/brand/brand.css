@@ -1,0 +1,428 @@
+/* Muslera & Peng Advogadas — brand overrides
+   Loaded last in <head>. Palette below mirrors the hexes that were swapped
+   in place across the theme stylesheets; the values come from the vertical
+   avatar gradient (Avatar Vertical MPA 3). */
+
+body {
+  --e-global-color-primary: #3A6169;    /* deep teal — gradient, lower right */
+  --e-global-color-secondary: #EFECE7;  /* cream — gradient, lower left */
+  --e-global-color-text: #5E7276;       /* teal grey */
+  --e-global-color-accent: #E0834C;     /* coral — gradient, upper left */
+  --e-global-color-background: #EFECE7;
+  --e-global-color-divider: #3A61691A;
+
+  /* full palette sampled from the avatar, for anything added later */
+  --mp-teal-deep: #153A42;
+  --mp-teal: #3A6169;
+  --mp-teal-mid: #709096;
+  --mp-sage: #A1AAA5;
+  --mp-coral: #E0834C;
+  --mp-coral-light: #EE9A70;
+  --mp-sand: #C4AB8E;
+  --mp-cream: #EFECE7;
+}
+
+/* The wordmark is 1.88:1, the theme logo was 3.49:1 — size by height so
+   headers and footers keep their original vertical rhythm. */
+.ata-site-logo img,
+.ata-site-logo .ata-site-logo-container img {
+  max-width: none;
+  width: auto;
+  height: 72px;
+}
+
+img[src*="logo-mp-light"] {
+  width: 190px;
+  height: auto;
+  max-width: 100%;
+}
+
+@media (max-width: 767px) {
+  .ata-site-logo img,
+  .ata-site-logo .ata-site-logo-container img { height: 54px; }
+  img[src*="logo-mp-light"] { width: 160px; }
+}
+
+/* The gradient coral is light: white on it is only 2.79:1, below AA.
+   Deep teal from the same gradient gives 4.39:1 — enough for the large,
+   bold type these buttons and badges use. */
+.btn-default,
+.btn-highlighted,
+.bg-accent-btn,
+.elementskit-btn,
+.newsletter-btn,
+.ekit-badge,
+.elementor-button,
+button[type="submit"],
+input[type="submit"],
+.wp-block-search__button {
+  color: var(--mp-teal-deep) !important;
+}
+
+.btn-default svg, .btn-default svg path,
+.btn-highlighted svg, .btn-highlighted svg path,
+.elementskit-btn svg, .elementskit-btn svg path,
+.newsletter-btn svg, .newsletter-btn svg path,
+.elementor-button svg, .elementor-button svg path,
+.elementor-button-icon svg, .elementor-button-icon svg path {
+  fill: var(--mp-teal-deep) !important;
+  color: var(--mp-teal-deep) !important;
+}
+
+::selection { background: var(--mp-coral); color: var(--mp-teal-deep); }
+
+/* Open accordion panel paints itself coral; its copy defaults to white
+   (2.79:1). Same deep-teal fix as the buttons. */
+.elementskit-card.active .ekit-accordion-title,
+.elementskit-card.active .ekit-accordion--toggler,
+.elementskit-card.active .elementskit-card-body,
+.elementskit-card.active .elementskit-card-body *,
+.elementskit-card.active .ekit_accordion_active_icon,
+.elementskit-card.active .ekit_accordion_active_icon * {
+  color: var(--mp-teal-deep) !important;
+  fill: var(--mp-teal-deep) !important;
+}
+
+/* Team section now holds two cards instead of four — widen them so the row
+   fills the grid rather than hugging the left edge. */
+.elementor-element-adf2419 > .elementor-element,
+.elementor-element-45cedf9 > .elementor-element {
+  --width: calc(50% - 15px);
+}
+@media (max-width: 767px) {
+  .elementor-element-adf2419 > .elementor-element,
+  .elementor-element-45cedf9 > .elementor-element { --width: 100%; }
+}
+
+/* Home hero: the flat teal becomes the avatar's own gradient sweep —
+   deep teal into mid teal, with the coral bleeding in from the top left. */
+.elementor-10 .elementor-element.elementor-element-18efcfc:not(.elementor-motion-effects-element-type-background) {
+  background-color: var(--mp-teal);
+  background-image:
+    radial-gradient(120% 90% at 8% 0%, rgba(224, 131, 76, 0.34) 0%, rgba(224, 131, 76, 0) 55%),
+    linear-gradient(135deg, #153A42 0%, #3A6169 45%, #5C838A 100%);
+}
+
+/* "(48) 3222-0888" is longer than the demo number and wrapped in the header. */
+.header-contact-info a, .elementskit-navbar-nav-default .header-phone a,
+a[href^="tel:"] { white-space: nowrap; }
+
+/* Elementor's own per-element rule (--width: calc(25% - 22.5px)) carries higher
+   specificity than a child selector, so the two surviving cards need to be
+   named directly. */
+.elementor-10 .elementor-element.elementor-element-48b1488,
+.elementor-10 .elementor-element.elementor-element-f897a29,
+.elementor-176 .elementor-element.elementor-element-bd1aaac,
+.elementor-176 .elementor-element.elementor-element-8f3356b,
+.elementor-element.elementor-element-48b1488,
+.elementor-element.elementor-element-f897a29,
+.elementor-element.elementor-element-bd1aaac,
+.elementor-element.elementor-element-8f3356b {
+  --width: calc(50% - 15px) !important;
+}
+@media (max-width: 767px) {
+  .elementor-element.elementor-element-48b1488,
+  .elementor-element.elementor-element-f897a29,
+  .elementor-element.elementor-element-bd1aaac,
+  .elementor-element.elementor-element-8f3356b { --width: 100% !important; }
+}
+
+/* The About image slot clips to a fixed 540px box and applies object-fit:cover,
+   which beheaded the 2:3 portrait. Let it show whole, at its own ratio. */
+.about-us-img {
+  flex: 0 0 auto !important;   /* column flex was shrinking it 1049px -> 900px */
+}
+.about-us-img,
+.about-us-img .elementor-widget-container,
+.about-us-img .elementor-image,
+.about-us-img figure {
+  height: auto !important;
+  overflow: visible !important;
+}
+.about-us-img img {
+  position: static !important;
+  height: auto !important;
+  width: 100% !important;
+  object-fit: fill !important;
+  aspect-ratio: auto !important;
+}
+
+/* Theme's "magic cursor" — the trailing dot/ring that follows the pointer. */
+#magic-cursor, #ball { display: none !important; }
+body.tt-magic-cursor { cursor: auto !important; }
+
+/* Same fixed-box + object-fit:cover clipping as the About image, on the
+   "Nosso Compromisso" slot — show the frame whole. */
+.our-commitment-img,
+.our-commitment-img .elementor-widget-container,
+.our-commitment-img figure {
+  height: auto !important;
+  overflow: visible !important;
+  width: 100% !important;
+}
+.our-commitment-img img {
+  position: static !important;
+  height: auto !important;
+  width: 100% !important;
+  object-fit: fill !important;
+  aspect-ratio: auto !important;
+}
+
+/* Same unclip for the "Nossa Abordagem" slot. */
+.our-approch-img-1,
+.our-approch-img-1 .elementor-widget-container,
+.our-approch-img-1 figure {
+  height: auto !important;
+  overflow: visible !important;
+  width: 100% !important;
+}
+.our-approch-img-1 img {
+  position: static !important;
+  height: auto !important;
+  width: 100% !important;
+  object-fit: fill !important;
+  aspect-ratio: auto !important;
+}
+
+/* Same unclip for the "Por que escolher" slot. */
+.why-choose-img,
+.why-choose-img .elementor-widget-container,
+.why-choose-img figure {
+  height: auto !important;
+  overflow: visible !important;
+  width: 100% !important;
+}
+.why-choose-img img {
+  position: static !important;
+  height: auto !important;
+  width: 100% !important;
+  object-fit: fill !important;
+  aspect-ratio: auto !important;
+}
+
+/* Profile photo slot clips like the other image widgets. */
+.team-single-img,
+.team-single-img .elementor-widget-container,
+.team-single-img figure {
+  height: auto !important;
+  overflow: visible !important;
+  width: 100% !important;
+}
+.team-single-img img {
+  position: static !important;
+  height: auto !important;
+  width: 100% !important;
+  object-fit: fill !important;
+  aspect-ratio: auto !important;
+}
+
+/* The hero photo hangs down into the strip above, so the About section on the
+   home page needs extra headroom to breathe. Template default: 100px / 50px. */
+.elementor-10 .elementor-element.elementor-element-40b0328 {
+  --padding-top: 190px !important;
+}
+@media (max-width: 1024px) {
+  .elementor-10 .elementor-element.elementor-element-40b0328 { --padding-top: 120px !important; }
+}
+@media (max-width: 767px) {
+  .elementor-10 .elementor-element.elementor-element-40b0328 { --padding-top: 80px !important; }
+}
+
+/* Sobre Nós: no entrance animations. Elementor hides elements with
+   .elementor-invisible until scroll, and the theme reveals headings letter by
+   letter and images via clip-path. GSAP writes inline styles, so these need
+   !important to win. */
+.elementor-page-176 .elementor-invisible,
+.elementor-page-176 .elementor-invisible * {
+  visibility: visible !important;
+  opacity: 1 !important;
+  animation: none !important;
+}
+.elementor-page-176 [class*="at-heading-animation"],
+.elementor-page-176 [class*="at-heading-animation"] *,
+.elementor-page-176 [class*="at-image-animation"],
+.elementor-page-176 [class*="at-image-animation"] * {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  clip-path: none !important;
+  animation: none !important;
+}
+.elementor-page-176 [data-settings*="animation"] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+/* Home: kill the section entrance reveals (fade/slide, letter-by-letter
+   headings, clip-path images) everywhere EXCEPT the hero block — the hero
+   keeps its animation. Hover effects are untouched.
+   18efcfc = hero section, a0a4c58 = strip that carries the hero photo. */
+.elementor-page-10 .elementor-10 > .elementor-element:not(.elementor-element-18efcfc):not(.elementor-element-a0a4c58) .elementor-invisible,
+.elementor-page-10 .elementor-10 > .elementor-element:not(.elementor-element-18efcfc):not(.elementor-element-a0a4c58).elementor-invisible {
+  visibility: visible !important;
+  opacity: 1 !important;
+  animation: none !important;
+}
+.elementor-page-10 .elementor-10 > .elementor-element:not(.elementor-element-18efcfc):not(.elementor-element-a0a4c58) [class*="at-heading-animation"],
+.elementor-page-10 .elementor-10 > .elementor-element:not(.elementor-element-18efcfc):not(.elementor-element-a0a4c58) [class*="at-heading-animation"] *,
+.elementor-page-10 .elementor-10 > .elementor-element:not(.elementor-element-18efcfc):not(.elementor-element-a0a4c58) [class*="at-image-animation"],
+.elementor-page-10 .elementor-10 > .elementor-element:not(.elementor-element-18efcfc):not(.elementor-element-a0a4c58) [class*="at-image-animation"] img {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  clip-path: none !important;
+  animation: none !important;
+}
+
+/* Team member pages: no effects at all — no entrance reveals, no letter-by-letter
+   headings, no clip-path image wipes, no hover shine. Body carries .mp-no-fx. */
+body.mp-no-fx .elementor-invisible,
+body.mp-no-fx .elementor-invisible *,
+body.mp-no-fx [class*="at-heading-animation"],
+body.mp-no-fx [class*="at-heading-animation"] *,
+body.mp-no-fx [class*="at-image-animation"],
+body.mp-no-fx [class*="at-image-animation"] *,
+body.mp-no-fx [data-settings*="animation"] {
+  visibility: visible !important;
+  opacity: 1 !important;
+  transform: none !important;
+  clip-path: none !important;
+  animation: none !important;
+  transition: none !important;
+}
+body.mp-no-fx .at-shiny-glass-effect:after,
+body.mp-no-fx .at-blog-shiny-glass-effect:after,
+body.mp-no-fx .at-shiny-glass-effect:hover:after,
+body.mp-no-fx .at-blog-shiny-glass-effect:hover:after {
+  content: none !important;
+  display: none !important;
+}
+
+/* "Nossos Serviços" on the home: no effects at all — entrance reveals, hover
+   shine and transitions included. */
+.elementor-10 .elementor-element-57d43ae,
+.elementor-10 .elementor-element-57d43ae * {
+  animation: none !important;
+  transition: none !important;
+  clip-path: none !important;
+  transform: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.elementor-10 .elementor-element-57d43ae .at-shiny-glass-effect:after,
+.elementor-10 .elementor-element-57d43ae .at-shiny-glass-effect:hover:after {
+  content: none !important;
+  display: none !important;
+}
+/* neutralise Elementor hover animations without hiding the element */
+.elementor-10 .elementor-element-57d43ae [class*="elementor-animation-"]:hover,
+.elementor-10 .elementor-element-57d43ae a:hover,
+.elementor-10 .elementor-element-57d43ae a:hover img,
+.elementor-10 .elementor-element-57d43ae *:hover {
+  transform: none !important;
+  filter: none !important;
+  animation: none !important;
+  transition: none !important;
+}
+
+/* Elementor swaps .elementor-invisible for .animated.fadeInUp once the widget
+   scrolls in, so the earlier rule stopped matching mid-flight. Cover both
+   states across the home, hero excluded. */
+.elementor-page-10 .elementor-10 > .elementor-element:not(.elementor-element-18efcfc):not(.elementor-element-a0a4c58) .animated,
+.elementor-page-10 .elementor-10 > .elementor-element:not(.elementor-element-18efcfc):not(.elementor-element-a0a4c58) [class*="fadeIn"],
+.elementor-page-10 .elementor-10 > .elementor-element:not(.elementor-element-18efcfc):not(.elementor-element-a0a4c58) [class*="image-box-anime"],
+.elementor-page-10 .elementor-10 > .elementor-element:not(.elementor-element-18efcfc):not(.elementor-element-a0a4c58) [data-settings*="animation"] {
+  animation: none !important;
+  animation-name: none !important;
+  animation-delay: 0s !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+/* "Nossa Equipe" on the home: no effects at all. */
+.elementor-10 .elementor-element-7038e3f,
+.elementor-10 .elementor-element-7038e3f * {
+  animation: none !important;
+  animation-name: none !important;
+  transition: none !important;
+  transform: none !important;
+  clip-path: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.elementor-10 .elementor-element-7038e3f .at-shiny-glass-effect:after,
+.elementor-10 .elementor-element-7038e3f .at-shiny-glass-effect:hover:after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Header phone: "(48) 99612-4224" is wider than the demo number the column was
+   sized for, so it was being clipped. Let the box size to its content. */
+.header-contact-box,
+.header-contact-box .elementskit-infobox,
+.header-contact-box .elementskit-infobox .box-body {
+  overflow: visible !important;
+  min-width: max-content;
+}
+.header-contact-box .elementskit-infobox .box-body > p {
+  font-size: 18px !important;
+  white-space: nowrap !important;
+}
+@media (max-width: 1200px) {
+  .header-contact-box .elementskit-infobox .box-body > p { font-size: 16px !important; }
+}
+
+/* Floating WhatsApp button — the number is the mobile listed on the Google
+   Business Profile, so it is the one clients already reach. */
+.mp-whatsapp {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 9999;
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff;
+  box-shadow: 0 6px 20px rgba(21, 58, 66, .28);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.mp-whatsapp:hover,
+.mp-whatsapp:focus-visible {
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 26px rgba(21, 58, 66, .38);
+}
+.mp-whatsapp:focus-visible { outline: 3px solid var(--mp-coral); outline-offset: 3px; }
+@media (max-width: 767px) {
+  .mp-whatsapp { right: 16px; bottom: 16px; width: 52px; height: 52px; }
+  .mp-whatsapp svg { width: 27px; height: 27px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mp-whatsapp { transition: none; }
+  .mp-whatsapp:hover { transform: none; }
+}
+
+/* Footer credit line, right under the copyright. */
+.mp-credit {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: #DCE4E5;          /* ~8:1 on the teal footer; opacity .75 was unreadable */
+  text-align: center;
+}
+.mp-credit a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.mp-credit a:hover { color: var(--mp-coral); }
+
+/* Inner page banners get the same gradient as the home hero. */
+.mp-page-banner:not(.elementor-motion-effects-element-type-background),
+.mp-page-banner {
+  background-color: var(--mp-teal) !important;
+  background-image:
+    radial-gradient(120% 90% at 8% 0%, rgba(224, 131, 76, 0.34) 0%, rgba(224, 131, 76, 0) 55%),
+    linear-gradient(135deg, #153A42 0%, #3A6169 45%, #5C838A 100%) !important;
+}
