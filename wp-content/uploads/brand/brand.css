@@ -426,3 +426,163 @@ body.mp-no-fx .at-blog-shiny-glass-effect:hover:after {
     radial-gradient(120% 90% at 8% 0%, rgba(224, 131, 76, 0.34) 0%, rgba(224, 131, 76, 0) 55%),
     linear-gradient(135deg, #153A42 0%, #3A6169 45%, #5C838A 100%) !important;
 }
+
+/* Home: the stats box over the "como funciona" photo drifted side to side
+   forever (theme's `infinitemove` keyframe animating `right`). Hold it still
+   at its designed offset. */
+.work-counter-box {
+  animation: none !important;
+}
+
+/* Service cards (home + /servicos/): the link wrapped only the text block, so
+   clicking the photo or the card padding did nothing. Stretch the existing
+   anchor over the whole card — no JS, keeps one link per card for SEO. */
+.service-item {
+  position: relative;
+}
+.service-item .service-content,
+.service-item .service-content .elementor-widget-container,
+.service-item .service-content .ekit-wid-con {
+  position: static !important;
+}
+.service-item .service-content .ekit_global_links::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+}
+
+/* Service cards: the descriptions differ in length and the content widget ships
+   with `ekit-equal-height-disable`, so the white panels ended at different
+   heights. Stretch the whole chain (card > widget > wid-con > link > infobox)
+   so every card in a row bottoms out on the same line. */
+.service-item > .service-content {
+  display: flex;
+  flex: 1 1 auto;
+}
+.service-item > .service-content > .ekit-wid-con,
+.service-item .ekit_global_links {
+  display: flex;
+  flex: 1 1 auto;
+}
+.service-item .elementskit-infobox {
+  flex: 1 1 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+/* "Proteção de Crianças e Adolescentes" wraps to two lines while the other
+   titles fit one, which made its row taller than the row above. Reserve two
+   lines for every title so all six cards match, not just the ones in a row. */
+.service-item .elementskit-info-box-title {
+  min-height: calc(2 * var(--e-global-typography-secondary-line-height, 1.3em));
+}
+
+/* ---- Nosso Escritório -------------------------------------------------- */
+.mp-office {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 90px 20px 100px;
+}
+.mp-office h2 {
+  color: var(--mp-teal-deep);
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.2;
+  margin: 0 0 22px;
+}
+.mp-office p { color: #4A5A5D; font-size: 17px; line-height: 1.75; margin: 0 0 16px; }
+.mp-office-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+.mp-office-photo { margin: 0; }
+.mp-office-photo img,
+.mp-office-gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 4px;
+}
+.mp-office-facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin: 80px 0;
+}
+.mp-office-fact {
+  background: #fff;
+  padding: 34px 30px;
+  border-top: 3px solid var(--mp-coral);
+}
+.mp-office-fact h3 {
+  color: var(--mp-teal-deep);
+  font-size: 20px;
+  margin: 0 0 14px;
+}
+.mp-office-fact p { margin: 0; font-size: 16px; }
+.mp-office-fact a { color: var(--mp-teal); text-decoration: underline; text-underline-offset: 3px; }
+.mp-office-fact a:hover { color: var(--mp-coral); }
+.mp-office-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+.mp-office-gallery figure { margin: 0; }
+.mp-office-cta { text-align: center; margin: 90px auto 0; max-width: 660px; }
+.mp-office-btn {
+  display: inline-block;
+  margin: 10px 8px 0;
+  padding: 16px 32px;
+  background: var(--mp-coral);
+  color: #fff !important;
+  font-weight: 600;
+  border-radius: 2px;
+  transition: background .25s ease;
+}
+.mp-office-btn:hover { background: var(--mp-teal-deep); }
+.mp-office-btn-alt { background: transparent; color: var(--mp-teal-deep) !important; box-shadow: inset 0 0 0 2px var(--mp-teal-deep); }
+.mp-office-btn-alt:hover { background: var(--mp-teal-deep); color: #fff !important; }
+@media (max-width: 900px) {
+  .mp-office { padding: 60px 20px 70px; }
+  .mp-office-intro,
+  .mp-office-facts,
+  .mp-office-gallery { grid-template-columns: 1fr; gap: 30px; }
+  .mp-office-facts { margin: 50px 0; }
+}
+.mp-office-team { margin: 0 0 80px; text-align: center; }
+.mp-office-team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 320px));
+  gap: 40px;
+  justify-content: center;
+  margin-top: 34px;
+}
+.mp-office-person { display: block; text-decoration: none; }
+.mp-office-person img { width: 100%; height: auto; display: block; border-radius: 4px; }
+.mp-office-person h3 {
+  color: var(--mp-teal-deep);
+  font-size: 21px;
+  margin: 20px 0 6px;
+}
+.mp-office-person p { color: #6A7A7D; font-size: 15px; margin: 0; }
+.mp-office-person:hover h3 { color: var(--mp-coral); }
+@media (max-width: 900px) {
+  .mp-office-team-grid { grid-template-columns: 1fr; }
+}
+
+/* Service sidebar "O que oferecemos?": the Elementor kit paints every
+   icon-list label with --e-global-color-secondary — the exact beige the theme
+   also uses as the item background — so the service names were invisible and
+   only the arrows showed. Give the list a white card surface and teal labels;
+   the coral hover state already inverted the text to white. */
+.service-catagery-list ul li,
+.service-catagery-list ul li a {
+  background-color: #fff;
+}
+.service-catagery-list ul li .elementor-icon-list-text,
+.service-catagery-list ul li a .elementor-icon-list-text,
+.service-catagery-list ul li a {
+  color: var(--mp-teal-deep);
+}
