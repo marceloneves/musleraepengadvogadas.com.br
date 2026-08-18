@@ -586,3 +586,9 @@ body.mp-no-fx .at-blog-shiny-glass-effect:hover:after {
 .service-catagery-list ul li a {
   color: var(--mp-teal-deep);
 }
+
+/* /equipe/ passou de oito cards de template para as duas advogadas. A linha
+   continua dimensionada para oito, então o par ficava encostado à esquerda. */
+.elementor-element-90ada3e {
+  justify-content: center;
+}
