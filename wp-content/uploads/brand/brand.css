@@ -720,21 +720,26 @@ body.mp-no-fx .at-blog-shiny-glass-effect:hover:after {
   .mp-video-player { width: 84vw; height: calc(84vw * 16 / 9); }
 }
 
-/* O link do Google Meu Negócio foi acrescentado à mão, então não existe a
-   regra que o Elementor gera por item do repeater — sem ela o botão ficava sem
-   fundo e com o ícone colorido. Espelha o tratamento dos vizinhos. */
-.elementor-5114 .elementor-element.elementor-element-e323194 .elementor-repeater-item-mpgoogle > a {
+/* Google Meu Negócio e LinkedIn foram acrescentados à mão, então não existe a
+   regra que o Elementor gera por item do repeater — sem ela os botões ficavam
+   sem fundo e com o ícone colorido. Espelha o tratamento dos vizinhos. */
+.elementor-5114 .elementor-element.elementor-element-e323194 .elementor-repeater-item-mpgoogle > a,
+.elementor-5114 .elementor-element.elementor-element-e323194 .elementor-repeater-item-mplinkedin > a {
   background-color: var(--e-global-color-accent);
 }
 .elementor-5114 .elementor-element.elementor-element-e323194 .elementor-repeater-item-mpgoogle > a :is(i, svg),
+.elementor-5114 .elementor-element.elementor-element-e323194 .elementor-repeater-item-mplinkedin > a :is(i, svg),
+.elementor-5114 .elementor-element.elementor-element-e323194 .elementor-repeater-item-mplinkedin > a i::before,
 .elementor-5114 .elementor-element.elementor-element-e323194 .elementor-repeater-item-mpgoogle > a i::before {
   color: var(--e-global-color-white) !important;
   fill: var(--e-global-color-white);
 }
-.elementor-5114 .elementor-element.elementor-element-e323194 .elementor-repeater-item-mpgoogle > a:hover {
+.elementor-5114 .elementor-element.elementor-element-e323194 .elementor-repeater-item-mpgoogle > a:hover,
+.elementor-5114 .elementor-element.elementor-element-e323194 .elementor-repeater-item-mplinkedin > a:hover {
   background-color: var(--e-global-color-white);
 }
-.elementor-5114 .elementor-element.elementor-element-e323194 .elementor-repeater-item-mpgoogle > a:hover i::before {
+.elementor-5114 .elementor-element.elementor-element-e323194 .elementor-repeater-item-mpgoogle > a:hover i::before,
+.elementor-5114 .elementor-element.elementor-element-e323194 .elementor-repeater-item-mplinkedin > a:hover i::before {
   color: var(--e-global-color-primary) !important;
 }
 
@@ -759,4 +764,56 @@ body.mp-no-fx .at-blog-shiny-glass-effect:hover:after {
 .mp-office-gallery img {
   aspect-ratio: 4 / 3;
   object-fit: cover;
+}
+
+/* Páginas legais (privacidade, cookies, termos). Coluna única de leitura, na
+   mesma casca das outras páginas — só o conteúdo muda. */
+.mp-legal {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 70px 20px 90px;
+  color: var(--mp-teal);
+}
+.mp-legal section { margin: 0 0 44px; }
+.mp-legal section:last-child { margin-bottom: 0; }
+.mp-legal h2 {
+  color: var(--mp-teal-deep);
+  font-size: 25px;
+  line-height: 1.3;
+  margin: 0 0 16px;
+}
+.mp-legal h3 {
+  color: var(--mp-teal-deep);
+  font-size: 18px;
+  margin: 26px 0 10px;
+}
+.mp-legal p { font-size: 17px; line-height: 1.75; margin: 0 0 16px; }
+.mp-legal p:last-child { margin-bottom: 0; }
+.mp-legal strong { color: var(--mp-teal-deep); }
+.mp-legal a { color: var(--mp-coral); text-decoration: underline; text-underline-offset: 3px; }
+.mp-legal a:hover { color: var(--mp-teal-deep); }
+.mp-legal ul { margin: 0 0 16px; padding-left: 22px; }
+.mp-legal li { font-size: 17px; line-height: 1.7; margin-bottom: 10px; }
+
+.mp-legal-intro { border-bottom: 1px solid var(--e-global-color-divider); padding-bottom: 30px; }
+.mp-legal-date {
+  font-size: 13px !important;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--mp-sage);
+  margin-bottom: 14px !important;
+}
+.mp-legal-lead { font-size: 20px !important; line-height: 1.6 !important; color: var(--mp-teal-deep); }
+
+.mp-legal-foot {
+  border-top: 1px solid var(--e-global-color-divider);
+  padding-top: 30px;
+  margin-top: 50px !important;
+}
+.mp-legal-links { font-size: 15px !important; color: var(--mp-sage); }
+@media (max-width: 700px) {
+  .mp-legal { padding: 50px 20px 70px; }
+  .mp-legal h2 { font-size: 22px; }
+  .mp-legal p, .mp-legal li { font-size: 16px; }
+  .mp-legal-lead { font-size: 18px !important; }
 }
