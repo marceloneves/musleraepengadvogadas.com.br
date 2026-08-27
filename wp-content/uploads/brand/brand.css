@@ -592,3 +592,171 @@ body.mp-no-fx .at-blog-shiny-glass-effect:hover:after {
 .elementor-element-90ada3e {
   justify-content: center;
 }
+
+/* Seção "Nossa História": o vídeo (Short 9:16) fica à esquerda e a linha do
+   tempo vira uma régua vertical à direita — um fio contínuo, um ponto por
+   marco, ano e texto alinhados à esquerda logo ao lado.
+   O wrapper NÃO usa as classes e-con/e-flex do Elementor — elas trazem --height
+   e o stretch do contêiner, que esmagavam a proporção do player. */
+.mp-video-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 56px;
+  width: 100%;
+  margin: 44px 0 0;
+}
+.mp-video-player {
+  flex: 0 0 auto;
+  width: 300px;
+  height: 533px;          /* 300 x 16/9 */
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--mp-teal-deep);
+  box-shadow: 0 16px 36px rgba(21, 58, 66, .18);
+  position: sticky;
+  top: 100px;
+}
+.mp-video-player video,
+.mp-video-player iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+}
+
+/* mesma especificidade das regras geradas pelo Elementor (post-10), que
+   declaravam a linha do tempo como row de itens a 25%. */
+.elementor-10 .elementor-element.elementor-element-8faa660 {
+  --flex-direction: column;
+  --flex-wrap: nowrap;
+  --width: auto;
+  --gap: 40px 0px;
+  --row-gap: 40px;
+  --column-gap: 0px;
+  flex: 1 1 auto;
+  min-width: 0;
+  position: relative;
+  padding-left: 42px;
+}
+.elementor-10 .elementor-element.elementor-element-8b88489,
+.elementor-10 .elementor-element.elementor-element-4c4955d,
+.elementor-10 .elementor-element.elementor-element-7edaf81,
+.elementor-10 .elementor-element.elementor-element-a1c1ff6 {
+  --width: 100%;
+  --gap: 4px 0px;
+  --row-gap: 4px;
+}
+/* o fio contínuo */
+.mp-video-row .elementor-element-8faa660::before {
+  content: "";
+  position: absolute;
+  left: 6px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: var(--mp-sand);
+}
+/* o ponto de cada marco, opaco por cima do fio */
+.mp-video-row .history-item {
+  position: relative;
+  text-align: left;
+}
+.mp-video-row .history-item::before {
+  content: "";
+  position: absolute;
+  left: -42px;
+  top: 5px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--mp-coral);
+  transition: background .25s ease, transform .25s ease;
+}
+.mp-video-row .history-item:hover::before {
+  background: var(--mp-teal-deep);
+  transform: scale(1.15);
+}
+/* o layout horizontal original desenhava o trilho como border-bottom de cada
+   ano (mais 60px de padding embaixo) e marcava os pontos no ::before/::after
+   do ano. Na vertical, quem desenha o fio é o ::before do contêiner. */
+.mp-video-row .history-year {
+  border: 0 !important;
+  padding-bottom: 0 !important;
+}
+/* os marcadores do tema servem ao layout horizontal original */
+.mp-video-row .history-year::before,
+.mp-video-row .history-year::after { display: none !important; }
+
+.mp-video-row .history-year .elementor-heading-title {
+  font-size: 15px !important;
+  font-weight: 600;
+  letter-spacing: .14em;
+  line-height: 1.2;
+  text-align: left !important;
+  color: var(--mp-coral);
+}
+.mp-video-row .history-item .elementskit-infobox,
+.mp-video-row .history-item .box-body { text-align: left !important; }
+.mp-video-row .history-item .elementskit-info-box-title {
+  font-size: 19px;
+  line-height: 1.35;
+  color: var(--mp-teal-deep);
+  margin: 4px 0 6px;
+}
+.mp-video-row .history-item .box-body p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--mp-teal);
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .mp-video-row { flex-direction: column; align-items: center; gap: 34px; margin: 34px 0 0; }
+  .mp-video-player { width: 280px; height: 498px; position: static; }
+  .elementor-10 .elementor-element.elementor-element-8faa660 { --width: 100%; }
+}
+@media (max-width: 380px) {
+  .mp-video-player { width: 84vw; height: calc(84vw * 16 / 9); }
+}
+
+/* O link do Google Meu Negócio foi acrescentado à mão, então não existe a
+   regra que o Elementor gera por item do repeater — sem ela o botão ficava sem
+   fundo e com o ícone colorido. Espelha o tratamento dos vizinhos. */
+.elementor-5114 .elementor-element.elementor-element-e323194 .elementor-repeater-item-mpgoogle > a {
+  background-color: var(--e-global-color-accent);
+}
+.elementor-5114 .elementor-element.elementor-element-e323194 .elementor-repeater-item-mpgoogle > a :is(i, svg),
+.elementor-5114 .elementor-element.elementor-element-e323194 .elementor-repeater-item-mpgoogle > a i::before {
+  color: var(--e-global-color-white) !important;
+  fill: var(--e-global-color-white);
+}
+.elementor-5114 .elementor-element.elementor-element-e323194 .elementor-repeater-item-mpgoogle > a:hover {
+  background-color: var(--e-global-color-white);
+}
+.elementor-5114 .elementor-element.elementor-element-e323194 .elementor-repeater-item-mpgoogle > a:hover i::before {
+  color: var(--e-global-color-primary) !important;
+}
+
+/* O rodapé tinha quatro colunas (marca 33%, Navegue 17%, Suporte 17%,
+   newsletter 33%). Com a newsletter removida sobrava um vão de 33% à direita,
+   então as três restantes são redistribuídas para fechar a linha.
+   Atenção: 3761b5b é a LINHA que envolve as colunas, não uma coluna. */
+@media (min-width: 768px) {
+  .elementor-5114 .elementor-element.elementor-element-c68e173 { --width: 40%; }
+  .elementor-5114 .elementor-element.elementor-element-a646cf2,
+  .elementor-5114 .elementor-element.elementor-element-9196b7c { --width: 28%; }
+}
+@media (max-width: 1024px) and (min-width: 768px) {
+  .elementor-5114 .elementor-element.elementor-element-c68e173 { --width: 100%; }
+  .elementor-5114 .elementor-element.elementor-element-a646cf2,
+  .elementor-5114 .elementor-element.elementor-element-9196b7c { --width: 50%; }
+}
+
+/* A galeria de /nosso-escritorio/ passou a misturar fotos reais de proporções
+   diferentes (a sala larga e as verticais da estação de trabalho). Uniformiza
+   em 4:3 recortando pelo centro, para as linhas do grid não desalinharem. */
+.mp-office-gallery img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
